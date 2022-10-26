@@ -5,7 +5,7 @@ import config.functions as function
 
 app = Flask(__name__)
 
-@app.route("/main")
+@app.route("/")
 def main() -> str:
     return render_template("index.html", menu="main", submenu='dashboard')
 
@@ -18,4 +18,4 @@ def databarang() -> str:
     return render_template('mod_barang/databarang.html', menu="barang", submenu="listdatabarang")
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
