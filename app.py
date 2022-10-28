@@ -4,14 +4,21 @@ from flask_mysqldb import MySQL
 import config.functions as func
 import json
 
+# Import config untuk konfigurasi databse
 f = open('config/config.json')
+# membaca data json
 config = json.load(f)
 
+#Membuat konfigurasi awal flask untuk menjalankan server  
 app = Flask(__name__)
+
+# konfigurasi database
 app.config['MYSQL_HOST'] = config['system_localhost']
 app.config['MYSQL_USER'] = config['system_username']
 app.config['MYSQL_PASSWORD'] = config['system_password']
 app.config['MYSQL_DB'] = config['system_database']
+
+# Memanggil fungsi / sintaks mysql
 mysql = MySQL(app)
 
 @app.route("/")
@@ -37,13 +44,14 @@ def inputbarangproses():
     totalbarang = request.form["totalbarang"]
     hargabarang = request.form["hargabarang"]
     statusbarang = request.form["statusbarang"]
+    userinputbarang = request.form["userinputbarang"]
     cur = mysql.connection.cursor()
     query = "SELECT * FROM barang WHERE barang_id = %s"
     selected = (idbarang, )
     cekID = cur.execute(query, selected)
     print(cekID)
     if (cekID < 1):
-        cur.execute("INSERT INTO barang(barang_id, barang_desc, barang_total, barang_price, barang_actived, barang_cdate, barang_cuser) VALUES (%s, %s, %s, %s, %s, %s, %s)", (idbarang, namabarang, totalbarang, hargabarang, statusbarang, func.datenow(), "saya" ))
+        cur.execute("INSERT INTO barang(barang_id, barang_desc, barang_total, barang_price, barang_actived, barang_cdate, barang_cuser) VALUES (%s, %s, %s, %s, %s, %s, %s)", (idbarang, namabarang, totalbarang, hargabarang, statusbarang, func.datenow(), userinputbarang ))
         mysql.connection.commit()
     cur.close()
     return redirect(url_for('databarang'))
