@@ -2,20 +2,14 @@ from cgi import print_form
 from flask import Flask, render_template ,request, redirect, url_for
 import config.functions as func
 from config.route import route
-import json
-
-# Import config untuk konfigurasi databse
-f = open('config/config.json')
-# membaca data json
-config = json.load(f)
 
 #Membuat konfigurasi awal flask untuk menjalankan server  
 app = Flask(__name__)
-app.register_blueprint(route, url_prefix="")
+app.register_blueprint(route, url_prefix="/datateam")
 
 # Memanggil fungsi / sintaks mysql
 mysql = func.connection(app)
-
+    
 @app.route("/")
 def main():
     return render_template("index.html", menu="main", submenu='dashboard')
@@ -27,6 +21,23 @@ def databarang() :
     barang = cur.fetchall()
     cur.close()
     return render_template('mod_barang/databarang.html', menu="barang", submenu="listdatabarang", data=barang)
+
+# @app.route("/inputbarang/<string:id>", methods=['GET', 'POST'])
+# def inputbarang(id):
+#     cur = mysql.connection.cursor()
+#     query = "SELECT * FROM barang WHERE barang_id = %s"
+#     selected = (id, )
+#     cekID = cur.execute(query, selected)
+#     if (cekID > 0):
+#         barang = cur.fetchall()
+#     else:
+#         barang = ''
+#     cur.close()
+#     return render_template("mod_barang/inputbarang.html", menu="barang", submenu="forminputbarang" , databarang=barang)
+
+@app.route("/inputbarang")
+def inputbarang():
+        return render_template("mod_barang/inputbarang.html")
 
 @app.route("/inputbarangproses", methods=["POST"])
 def inputbarangproses():
@@ -53,9 +64,9 @@ def deletebarang(id):
     query = "SELECT * FROM barang WHERE barang_id = %s"
     selected = (id, )
     cekID = cur.execute(query, selected)
-    print(cekID)
-    if (cekID > 1):
-        cur.execute("DELETE FROM barang WHERE barang_id = %s", selected)
+    if (cekID > 0):
+        querydelete = "DELETE FROM barang WHERE barang_id = %s"
+        cur.execute(querydelete, selected)
         mysql.connection.commit()
     cur.close()
     return redirect(url_for('databarang'))

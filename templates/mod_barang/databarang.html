@@ -68,18 +68,40 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="/inputbarang/{{row.0}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" id="{{row.0}}" href="/deletebarang/{{row.0}}">
+                          <a class="btn btn-danger btn-sm" id="{{row.0}}" data-toggle="modal" data-target="#modal-default" href="#">
                               <i class="fas fa-trash">
                               </i>
                               Delete
                           </a>
                       </td>
                       </tr>
+                      <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Simpan perubahan</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Apakah anda yakin ingin menghapus data dengan kode barang {{row.0}} ?</p>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                              <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                              <a href="/deletebarang/{{row.0}}" class="btn btn-primary">Simpan</a>
+                            </div>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+                      <!-- /.modal -->
                       {% endfor %}
                     </tbody>
                   </table>
