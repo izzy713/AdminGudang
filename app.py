@@ -1,33 +1,18 @@
 from cgi import print_form
 from flask import Flask, render_template ,request, redirect, url_for
-from flask_mysqldb import MySQL
 import config.functions as func
-import json
-
-# Import config untuk konfigurasi databse
-f = open('config/config.json')
-# membaca data json
-config = json.load(f)
+from config.route import route
 
 #Membuat konfigurasi awal flask untuk menjalankan server  
 app = Flask(__name__)
-
-# konfigurasi database
-app.config['MYSQL_HOST'] = config['system_localhost']
-app.config['MYSQL_USER'] = config['system_username']
-app.config['MYSQL_PASSWORD'] = config['system_password']
-app.config['MYSQL_DB'] = config['system_database']
+app.register_blueprint(route, url_prefix="/datateam")
 
 # Memanggil fungsi / sintaks mysql
-mysql = MySQL(app)
-
+mysql = func.connection(app)
+    
 @app.route("/")
 def main():
     return render_template("index.html", menu="main", submenu='dashboard')
-
-@app.route("/inputbarang")
-def inputbarang():
-    return render_template("mod_barang/inputbarang.html", menu="barang", submenu="forminputbarang")
 
 @app.route("/databarang")
 def databarang() :
@@ -36,6 +21,23 @@ def databarang() :
     barang = cur.fetchall()
     cur.close()
     return render_template('mod_barang/databarang.html', menu="barang", submenu="listdatabarang", data=barang)
+
+# @app.route("/inputbarang/<string:id>", methods=['GET', 'POST'])
+# def inputbarang(id):
+#     cur = mysql.connection.cursor()
+#     query = "SELECT * FROM barang WHERE barang_id = %s"
+#     selected = (id, )
+#     cekID = cur.execute(query, selected)
+#     if (cekID > 0):
+#         barang = cur.fetchall()
+#     else:
+#         barang = ''
+#     cur.close()
+#     return render_template("mod_barang/inputbarang.html", menu="barang", submenu="forminputbarang" , databarang=barang)
+
+@app.route("/inputbarang")
+def inputbarang():
+        return render_template("mod_barang/inputbarang.html")
 
 @app.route("/inputbarangproses", methods=["POST"])
 def inputbarangproses():
@@ -52,6 +54,19 @@ def inputbarangproses():
     print(cekID)
     if (cekID < 1):
         cur.execute("INSERT INTO barang(barang_id, barang_desc, barang_total, barang_price, barang_actived, barang_cdate, barang_cuser) VALUES (%s, %s, %s, %s, %s, %s, %s)", (idbarang, namabarang, totalbarang, hargabarang, statusbarang, func.datenow(), userinputbarang ))
+        mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('databarang'))
+
+@app.route("/deletebarang/<string:id>", methods={"POST", "GET"})
+def deletebarang(id):
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM barang WHERE barang_id = %s"
+    selected = (id, )
+    cekID = cur.execute(query, selected)
+    if (cekID > 0):
+        querydelete = "DELETE FROM barang WHERE barang_id = %s"
+        cur.execute(querydelete, selected)
         mysql.connection.commit()
     cur.close()
     return redirect(url_for('databarang'))
