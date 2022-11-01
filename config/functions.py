@@ -18,3 +18,12 @@ def connection(app):
     mysql = MySQL(app)
 
     return mysql
+
+# def BarangID(barang_desc, barang_total):
+#     barang_id = barang_desc + "/" + barang_total
+#     return barang_id
+
+# namabarang = "Baju"
+# totalbarang = 10
+
+# print(BarangID(namabarang, str(totalbarang)))
