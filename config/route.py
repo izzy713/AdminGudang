@@ -4,4 +4,4 @@ route = Blueprint("route", __name__, static_folder="../static", template_folder=
 
 @route.route("/")
 def datateam():
-    return render_template("mod_team/datateam.html")
+    return render_template("mod_team/datateam.html", menu="teams", submenu="listeam")

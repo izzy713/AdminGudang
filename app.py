@@ -20,24 +20,25 @@ def databarang() :
     cur.execute("SELECT * FROM barang")
     barang = cur.fetchall()
     cur.close()
-    return render_template('mod_barang/databarang.html', menu="barang", submenu="listdatabarang", data=barang)
+    abc = [0,1,2,3,4,5,6,7,8,9]
+    return render_template('mod_barang/databarang.html', menu="barang", submenu="listdatabarang", data=barang, rowdata=abc)
 
-# @app.route("/inputbarang/<string:id>", methods=['GET', 'POST'])
-# def inputbarang(id):
-#     cur = mysql.connection.cursor()
-#     query = "SELECT * FROM barang WHERE barang_id = %s"
-#     selected = (id, )
-#     cekID = cur.execute(query, selected)
-#     if (cekID > 0):
-#         barang = cur.fetchall()
-#     else:
-#         barang = ''
-#     cur.close()
-#     return render_template("mod_barang/inputbarang.html", menu="barang", submenu="forminputbarang" , databarang=barang)
+@app.route("/editbarang/<string:id>", methods=['GET', 'POST'])
+def editbarang(id):
+    cur = mysql.connection.cursor()
+    query = "SELECT * FROM barang WHERE barang_id = %s"
+    selected = (id, )
+    cekID = cur.execute(query, selected)
+    if (cekID > 0):
+        barang = cur.fetchall()
+    else:
+        barang = ''
+    cur.close()
+    return render_template("mod_barang/editbarang.html", menu="barang", submenu="forminputbarang" , databarang=barang)
 
 @app.route("/inputbarang")
 def inputbarang():
-        return render_template("mod_barang/inputbarang.html")
+    return render_template("mod_barang/inputbarang.html", menu="barang", submenu="forminputbarang")
 
 @app.route("/inputbarangproses", methods=["POST"])
 def inputbarangproses():
