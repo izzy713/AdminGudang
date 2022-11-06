@@ -1,6 +1,6 @@
 {
-    "system_localhost": "sql12.freesqldatabase.com",
-    "system_username": "sql12530002",
-    "system_password": "IMQIg542G5",
-    "system_database": "sql12530002"
+    "system_localhost": "localhost",
+    "system_username": "root",
+    "system_password": "",
+    "system_database": "datagudang"
 }
