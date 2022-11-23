@@ -1,29 +1,20 @@
 from flask_mysqldb import MySQL
 from datetime import date
-import json
+
+mysql = MySQL()
 
 def datenow():
     today = date.today()
     return today
 
-def connection(app):
-    f = open('config/config.json')
-    config = json.load(f)
-    
-    app.config['MYSQL_HOST'] = config['system_localhost']
-    app.config['MYSQL_USER'] = config['system_username']
-    app.config['MYSQL_PASSWORD'] = config['system_password']
-    app.config['MYSQL_DB'] = config['system_database']
-    
-    mysql = MySQL(app)
+def YesNo(params):
+    feedback = "N"
 
-    return mysql
+    if params == "True":
+        feedback = "Y"
 
-# def BarangID(barang_desc, barang_total):
-#     barang_id = barang_desc + "/" + barang_total
-#     return barang_id
+    return feedback
 
-# namabarang = "Baju"
-# totalbarang = 10
-
-# print(BarangID(namabarang, str(totalbarang)))
+def SumTotal(harga, total):
+    total = harga * total
+    return total
