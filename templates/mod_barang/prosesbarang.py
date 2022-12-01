@@ -28,10 +28,11 @@ def inputbarangproses():
     query = "SELECT * FROM barang WHERE barang_id = %s"
     selected = (idbarang, )
     cekID = cur.execute(query, selected)
-    print(cekID)
     if (cekID < 1):
         cur.execute("INSERT INTO barang(barang_id, barang_desc, barang_total, barang_price, barang_actived, barang_cdate, barang_cuser) VALUES (%s, %s, %s, %s, %s, %s, %s)", (idbarang, namabarang, totalbarang, hargabarang, statusbarang, func.datenow(), userinputbarang ))
         mysql.connection.commit()
+        logsdata = "barang_id = "+ idbarang + " &barang_desc = " + namabarang + " &barang_total = " + totalbarang + " &barang_price = Rp" + hargabarang + " &barang_actived = " + statusbarang + " &barang_cdate = " + func.datenow().strftime("%m/%d/%Y, %H:%M:%S") + " &barang_cuser = " + userinputbarang 
+        func.Logs('barang', 'insert', logsdata)
     cur.close()
     return redirect(url_for('route.databarang'))
 
@@ -64,6 +65,8 @@ def editbarangproses(id):
     if (cekID >= 1):
         cur.execute("UPDATE barang SET barang_desc = %s, barang_total = %s, barang_price = %s, barang_actived = %s, barang_cdate = %s, barang_cuser = %s WHERE barang_id = %s", (namabarang, totalbarang, hargabarang, statusbarang, func.datenow(), userinputbarang, idbarang ))
         mysql.connection.commit()
+        logsdata = "barang_id = "+ idbarang + " &barang_desc = " + namabarang + " &barang_total = " + totalbarang + " &barang_price = Rp" + hargabarang + " &barang_actived = " + statusbarang + " &barang_cdate = " + func.datenow().strftime("%m/%d/%Y, %H:%M:%S") + " &barang_cuser = " + userinputbarang 
+        func.Logs('barang', 'update', logsdata)
     cur.close()
     return redirect(url_for('route.databarang'))
 
@@ -77,5 +80,7 @@ def deletebarang(id):
         querydelete = "DELETE FROM barang WHERE barang_id = %s"
         cur.execute(querydelete, selected)
         mysql.connection.commit()
+        logsdata = "barang_id = "+ id 
+        func.Logs('barang', 'delete', logsdata)
     cur.close()
     return redirect(url_for('route.databarang'))

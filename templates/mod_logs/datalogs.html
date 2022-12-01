@@ -7,12 +7,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Data Barang</h1>
+            <h1>Logs</h1>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Data Barang</li>
+            <li class="breadcrumb-item active">Logs</li>
             </ol>
         </div>
         </div>
@@ -45,13 +45,12 @@
                   <table class="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <td>Nomor</td>
-                        <th>Kode Barang</th>
-                        <th>Nama Barang</th>
-                        <th>Total Barang</th>
-                        <th>Harga Barang</th>
-                        <th>Status Barang</th>
-                        <th class="text-justify">Action</th>
+                        <th>ID</th>
+                        <th>Table</th>
+                        <th>Parameter</th>
+                        <th>Data</th>
+                        <th>Date Created</th>
+                        <th>User Created</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -62,40 +61,19 @@
                       {% endfor %} -->
 
                       {% for row in data %}
-                      {% set barang_id = row.0 %}
-                      {% set barang_desc = row.1 %}
-                      {% set barang_total = row.2 %}
-                      {% set barang_price = row.3 %}
-                      {% set barang_status = row.4 %}
-                      {% if barang_status == 'Y': %}
-                        {% set barang_status = 'Actived' %}
-                      {% else: %}
-                        {% set barang_status = 'Inactive' %}
-                      {% endif %}
+                      {% set logs_id = row.0 %}
+                      {% set logs_table = row.1 %}
+                      {% set logs_params = row.2 %}
+                      {% set logs_data = row.3 %}
+                      {% set logs_cdate = row.4 %}
+                      {% set logs_cuser = row.5 %}
                       <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{barang_id}}</td>
-                        <td>{{barang_desc}}</td>
-                        <td>{{barang_total}}</td>
-                        <td>Rp {{barang_price}}</td>
-                        <td>{{barang_status}}</td>
-                        <td class="project-actions">
-                          <!-- <a class="btn btn-primary btn-sm" id="{{barang_id}}" href="#">
-                              <i class="fas fa-folder">
-                              </i>
-                              View
-                          </a> -->
-                          <a class="btn btn-info btn-sm" href="/editbarang/{{barang_id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" id="{{barang_id}}" data-toggle="modal" data-target="#modal-default" href="#" onclick="Dialog('{{barang_id}}')">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
+                        <td>{{logs_id}}</td>
+                        <td>{{logs_table}}</td>
+                        <td>{{logs_params}}</td>
+                        <td>{{logs_data}}</td>
+                        <td>{{logs_cdate}}</td>
+                        <td>{{logs_cuser}}</td>
                       </tr>
                       <!-- /.modal -->
                       {% endfor %}
@@ -123,7 +101,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Apakah anda yakin ingin menghapus data <b id="barang_id"></b> ?</p>
+        <p>Apakah anda yakin ingin menghapus data <b id="logs_id"></b> ?</p>
       </div>
       <div class="modal-footer justify-content-between">
         <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
@@ -134,19 +112,4 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-
-<script>
-  function Dialog(id){
-    var barang_id = id
-    document.getElementById("barang_id").innerHTML = id;
-    document.getElementById("barang_id").value = id;
-  }
-
-  function DeleteData(){
-    var test = document.getElementById("barang_id").value
-    var url = "/deletebarang/"+test
-    location.href = url;
-  }
-</script>
-
 {% include 'footer.html' %}
