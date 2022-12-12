@@ -1,11 +1,13 @@
 from flask import Flask, render_template
 import config.functions as func
 from templates.mod_barang.prosesbarang import route
+from templates.mod_logs.proseslogs import routelogs
 import json
 
 #Membuat konfigurasi awal flask untuk menjalankan server  
 app = Flask(__name__)
 app.register_blueprint(route, url_prefix="")
+app.register_blueprint(routelogs, url_prefix="")
 
 f = open('config/config.json')
 config = json.load(f)
