@@ -31,7 +31,7 @@
 
 <!-- Preloader -->
 <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ url_for('static', filename='dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ url_for('static', filename='dist/img/avatar.png') }}" alt="AdminLTELogo" height="60" width="60">
 </div>
 
 <!-- Navbar -->
@@ -93,30 +93,6 @@
     <span class="brand-text font-weight-light">Data Barang</span>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-    <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-        <img src="{{ url_for('static', filename='dist/img/avatar6.png') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-        <a href="#" class="d-block">Admin Staff</a>
-        </div>
-    </div>
-
-    <!-- SidebarSearch Form -->
-    <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-            <button class="btn btn-sidebar">
-            <i class="fas fa-search fa-fw"></i>
-            </button>
-        </div>
-        </div>
-    </div>
-
     <!-- Sidebar Menu -->
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -151,7 +127,7 @@
                 <li class="nav-item">
                     <a href="/inputbarang" class="nav-link {% if submenu =='forminputbarang' %} active {% endif %}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Input Barang Masuk</p>
+                    <p>Input Barang</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -191,7 +167,7 @@
                 <!-- <li class="nav-item">
                     <a href="/inputbarang" class="nav-link {% if submenu =='forminputbarang' %} active {% endif %}">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Input Barang Masuk</p>
+                    <p>Input Barang</p>
                     </a>
                 </li> -->
                 <li class="nav-item">
