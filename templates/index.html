@@ -1,13 +1,16 @@
 {% include 'header.html' %}
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper primary-background">
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
-        </div><!-- /.col -->
+          <span>
+            <img src="{{ url_for('static', filename='../../static/dist/img/logo.png') }}" alt="your connection is poor" width="70px" class="d-inline">
+            <h1 class="m-0 d-inline font-weight-bold">PT INDONESIA KREATIF</h1>
+          </span>
+          </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -20,7 +23,41 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  
+  <div class="col-md-12">
+    <marquee behavior="" direction="">Selamat Datang Di Website Data Gudang</marquee>
+  </div>
+  <div class="row mx-auto">
+    <div class="col-md-6">
+      <!-- Box Comment -->
+      <div class="card card-widget primary-skyblue">
+        <div class="card-body">
+          <p class="text-center font-weight-bold">JUJUR, AMANAH, TERPERCAYA</p>
+          <div>
+            <img src="{{ url_for('static', filename='../../static/dist/img/pt.jpeg') }}" alt="maaf lag" class="gambar">
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-6">
+      <!-- Box Comment -->
+      <div class="card card-widget primary-skyblue">
+        <div class="card-body">
+          <!-- post text -->
+          <h4 class="text-center font-weight-bold">VISI</h4>
+          <p>Menjadi perusahaan perdagangan nasional berkelas dunia yang terpercaya dan terkemuka.</p>
+
+          <h4 class="text-center font-weight-bold">MISI</h4>
+          <p>1. Melakukan perdagangan umum dan khusus untuk produk pangan dan non pangan dari hulu hingga hilir, dengan sasaran pasar domestik dan internasional;</p>
+          <p>2. Memberikan produk yang berkualitas, harga yang kompetitif, dan kebermanfaatan guna memastikan kepuasaan pelanggan, serta menjalin kemitraan yang berkesinambungan;</p>
+          <p>3. Merancang ekosistem terintegrasi yang berfungsi menopang bisnis utama dalam perdagangan;</p>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+  </div>
   <!-- /.content -->
 </div>
 {% include 'footer.html' %}
