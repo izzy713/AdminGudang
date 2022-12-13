@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2022 at 11:03 AM
+-- Generation Time: Dec 12, 2022 at 03:59 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -48,8 +48,7 @@ INSERT INTO `barang` (`barang_id`, `barang_desc`, `barang_total`, `barang_price`
 ('HP-01', 'Handphone Samsung', 1, 3500000, 'o', '2022-10-27', 'saya'),
 ('KYB-01', 'Keyboard Logitech', 0, 0, 'o', '2022-10-28', 'saya'),
 ('abc-03', 'baterai abc 03', 20, 5000, 'o', '2022-11-05', 'Adi'),
-('MJ-01', 'Meja Kampus Olympic', 5, 300000, 'Y', '2022-11-09', 'Adi'),
-('HKC-91', 'Handphone Samsung', 5, 50000, 'Y', '2022-12-01', 'Adzka');
+('MJ-01', 'Meja Kampus Olympic', 5, 300000, 'Y', '2022-11-09', 'Adi');
 
 -- --------------------------------------------------------
 
@@ -74,7 +73,8 @@ INSERT INTO `logs` (`logs_id`, `logs_table`, `logs_params`, `logs_data`, `logs_c
 (1, 'barang', 'insert', 'barang_id = 1&barang_desc = 1&barang_total = 10barang_price = Rp15000&barang_actived = Y&barang_cdate = 11/30/2022, 15:09:46&barang_cuser = ad', '2022-11-30 15:09:46', 'system'),
 (2, 'barang', 'update', 'barang_id = 1 &barang_desc = 1 done &barang_total = 10 &barang_price = Rp15000 &barang_actived = Y &barang_cdate = 11/30/2022, 15:12:17 &barang_cuser = ad', '2022-11-30 15:12:17', 'system'),
 (3, 'barang', 'delete', 'barang_id = 1', '2022-11-30 15:12:29', 'system'),
-(4, 'barang', 'insert', 'barang_id = HKC-91 &barang_desc = Handphone Samsung &barang_total = 5 &barang_price = Rp50000 &barang_actived = Y &barang_cdate = 12/01/2022, 16:57:26 &barang_cuser = Adzka', '2022-12-01 16:57:26', 'system');
+(4, 'barang', 'insert', 'barang_id = HKC-91 &barang_desc = Handphone Samsung &barang_total = 5 &barang_price = Rp50000 &barang_actived = Y &barang_cdate = 12/01/2022, 16:57:26 &barang_cuser = Adzka', '2022-12-01 16:57:26', 'system'),
+(5, 'barang', 'delete', 'barang_id = HKC-91', '2022-12-02 21:44:52', 'system');
 
 --
 -- Indexes for dumped tables
@@ -94,7 +94,7 @@ ALTER TABLE `logs`
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `logs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `logs_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
